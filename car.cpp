@@ -19,8 +19,13 @@ Car::Car() {
     backseatDoors = None;
 }
 Car::Car(char const* const manufacturerName, char const* const modelName, PerformanceStats perf, uint8_t numSeats, DoorKind backseatDoorDesign){
-    *manufacturer = *manufacturerName;
-    *model = *modelName;
+
+    manufacturer = new char [strlen(manufacturerName)+1];
+    strcpy(manufacturer, manufacturerName);
+
+    model = new char [strlen(modelName) +1];
+    strcpy(model, modelName);
+
     zeroToSixtyNs = perf.zeroToSixtyNs;
     headonDragCoeff = perf.headonDragCoeff;
     horsepower = perf.horsepower;
@@ -28,8 +33,12 @@ Car::Car(char const* const manufacturerName, char const* const modelName, Perfor
     backseatDoors = backseatDoorDesign;
 }
 Car::Car(Car const& o){
-    manufacturer = o.manufacturer;
-    model = o.model;
+    manufacturer = new char [strlen(o.manufacturer)+1];
+    strcpy(manufacturer, o.manufacturer);
+
+    model = new char [strlen(o.model) +1];
+    strcpy(model, o.model);
+
     zeroToSixtyNs = o.zeroToSixtyNs;
     headonDragCoeff = o.headonDragCoeff;
     horsepower = o.horsepower;

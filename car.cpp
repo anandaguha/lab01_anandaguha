@@ -5,7 +5,7 @@
 #include <cstddef>
 #include <cstring>
 #include <iostream>
-#include <string>
+#include <cstring>
 using namespace std;
 
 
@@ -74,11 +74,13 @@ DoorKind Car::getBackseatDoors() const{
 }
 
 void Car::manufacturerChange(char const* const newManufacturer){
-    *manufacturer = *newManufacturer;
+    manufacturer = new char[strlen(newManufacturer) + 1];
+    strcpy( manufacturer, newManufacturer);
 }
 
 void Car::modelNameChange(char const* const newModelName){
-    *model = *newModelName;
+    model= new char[strlen(newModelName) + 1];
+    strcpy(model, newModelName);
 }
 
 void Car::reevaluateStats(PerformanceStats newStats){

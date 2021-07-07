@@ -4,6 +4,10 @@
 #include "car.hpp"
 #include <cstddef>
 #include <cstring>
+#include <iostream>
+#include <string>
+using namespace std;
+
 
 Car::Car() {
     manufacturer = NULL;
@@ -12,11 +16,11 @@ Car::Car() {
     headonDragCoeff = 0;
     horsepower = 0;
     seatCount = 0;
-    backseatDoors = 'None';
+    backseatDoors = None;
 }
 Car::Car(char const* const manufacturerName, char const* const modelName, PerformanceStats perf, uint8_t numSeats, DoorKind backseatDoorDesign){
-    manufacturer = manufacturerName;
-    model = modelName;
+    *manufacturer = *manufacturerName;
+    *model = *modelName;
     zeroToSixtyNs = perf.zeroToSixtyNs;
     headonDragCoeff = perf.headonDragCoeff;
     horsepower = perf.horsepower;
@@ -30,7 +34,7 @@ Car::Car(Car const& o){
     headonDragCoeff = o.headonDragCoeff;
     horsepower = o.horsepower;
     seatCount = o.seatCount;
-    backseatDoors = o.backseatDoorDesign;
+    backseatDoors = o.backseatDoors;
 }
 
 Car& Car::operator=(Car const& o){
@@ -39,7 +43,7 @@ Car& Car::operator=(Car const& o){
     this -> headonDragCoeff = o.headonDragCoeff;
     this -> horsepower = o.horsepower;
     this -> seatCount = o.seatCount;
-    this -> backseatDoors = o.backseatDoorDesign;
+    this -> backseatDoors = o.backseatDoors;
     return *this;
 }
 
@@ -56,7 +60,7 @@ char const* Car::getModel() const{
 }
 
 PerformanceStats Car::getStats() const{
-    return PerformanceStats(horsepower, zeroToSixtyNs, headonDragCoeff)//idk
+    return PerformanceStats(horsepower, zeroToSixtyNs, headonDragCoeff);//idk
 }
 
 uint8_t Car::getSeatCount() const{
@@ -64,15 +68,15 @@ uint8_t Car::getSeatCount() const{
 }
 
 DoorKind Car::getBackseatDoors() const{
-    return backseatDoors
+    return backseatDoors;
 }
 
 void Car::manufacturerChange(char const* const newManufacturer){
-    manufacturer = newManufacturer;
+    *manufacturer = *newManufacturer;
 }
 
 void Car::modelNameChange(char const* const newModelName){
-    model = newModelName;
+    *model = *newModelName;
 }
 
 void Car::reevaluateStats(PerformanceStats newStats){

@@ -48,6 +48,8 @@ Car& Car::operator=(Car const& o){
 }
 
 Car::~Car(){
+    delete manufacturer;
+    delete model;
     cout<< "I am destorying the car.";
 }
 
